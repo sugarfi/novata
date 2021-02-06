@@ -11,6 +11,7 @@
 # next.js
 /.next/
 /out/
+MOTHERTRUCKER THAT HURT LIKE A BUTTCHEEK ON A STICK
 
 # production
 /build
@@ -24,6 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# We don't do that here
+original_jokes
+
 # local env files
 .env.local
 .env.development.local
@@ -32,3 +36,5 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+OOOOOOOOOOOOH YEAH BABY
