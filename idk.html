@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>idk man</title>
+    <script src="Tone.js"></script>
+    <script src="NexusUI.min.js"></script>
+</head>
+<body>
+        <div id="o"></div>
+    <div style="display: flex">
+        <div id="s"></div>
+        <div id="m">
+        </div>
+    </div>
+    <button id="p">ask me ask me ask me</button>
+            <script>
+                Nexus.context = Tone.context;
+                const player = new Tone.Player('./idk.wav').toMaster();
+                document.getElementById('p').onclick = () => {
+                                    player.stop();
+                                    player.seek(0);
+                                    player.start();
+                                };
+                                const o = {
+                                                    size: [300, 150]
+                                                };
+                                new Nexus.Spectrogram('#s', o).connect(Tone.Master);
+                                new Nexus.Meter('#m', {
+                                                size: [50, 150]
+                                                }).connect(Tone.Master);
+                                new Nexus.Oscilloscope('#o', {
+                                                    size: [350, 150]
+                                                }).connect(Tone.Master);
+            </script>
+</body>
+</html>
