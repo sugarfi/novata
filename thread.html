@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+      </head>
+    <title>grasp</title>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img src="aus.jpg" id="aus" />
+        </a-assets>
+        <a-entity position="0 0 0" particle-system="preset: dust; particleCount: 40000; velocityValue: 0 0.1 0; velocitySpread: 0 0 0; maxAge: 100" blending="3"></a-entity>
+        <a-sky src="#aus"></a-sky>
+    </a-scene>
+</body>
+</html>
