@@ -1,6 +1,6 @@
 # novata
 
-see some of the existing pagh
+see some of the existing pages for examples - or don't, might be more fun that way >:)
 
 a site for any kind of interesting musings thoughts or html
 
