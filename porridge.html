@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eat</title>
+</head>
+<body>
+    <h1>eat porridge</h1>
+    <img src="boring.png" />
+    <img class="child1" src="boring.png" />
+    <img class="child2" src="boring.png" />
+    <img class="child3" src="boring.png" />
+    <img class="child4" src="boring.png" />
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url(surp.gif);
+}
+    @keyframes weed {
+        0%, 100% {
+        text-shadow:
+            -1px  1px    red,
+            -2px  2px    red,
+            -3px  3px    red,
+            -4px  4px    red,
+            -5px  5px  green,
+            -6px  6px  green,
+            -7px  7px  green,
+            -8px  8px  green,
+            -9px  9px  green,
+            -10px 10px  blue,
+            -11px 11px  blue,
+            -12px 12px  blue,
+            -13px 13px  blue,
+            -14px 14px  blue;
+        }
+        33% {
+        text-shadow:
+            -1px  1px   blue,
+            -2px  2px   blue,
+            -3px  3px   blue,
+            -4px  4px   blue,
+            -5px  5px    red,
+            -6px  6px    red,
+            -7px  7px    red,
+            -8px  8px    red,
+            -9px  9px    red,
+            -10px 10px green,
+            -11px 11px green,
+            -12px 12px green,
+            -13px 13px green,
+            -14px 14px green;
+        }
+        66% {
+        text-shadow:
+            -1px  1px  green,
+            -2px  2px  green,
+            -3px  3px  green,
+            -4px  4px  green,
+            -5px  5px  green,
+            -6px  6px   blue,
+            -7px  7px   blue,
+            -8px  8px   blue,
+            -9px  9px   blue,
+            -10px 10px   red,
+            -11px 11px   red,
+            -12px 12px   red,
+            -13px 13px   red,
+            -14px 14px   red;
+        }
+    }
+
+    h1 {
+        position: absolute;
+        left: 50%;
+        top: 1%;
+        font-size: 6rem;
+        transform: translate(-50%, -50%);
+        animation: weed 10s infinite forwards;
+    }
+
+    @keyframes spin {
+        from {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+
+    img { 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 50%;
+        animation: spin 10s infinite forwards linear;
+    }
+
+    .child1 {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        height: 20%;
+    }
+
+    .child2 {
+        position: absolute;
+        top: 50%;
+        left: 80%;
+        height: 20%;
+    }
+
+    .child3 {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        height: 5%;
+    }
+
+    .child4 {
+        position: absolute;
+        top: 50%;
+        left: 95%;
+        height: 5%;
+    }
+</style>
+</body>
+</html>

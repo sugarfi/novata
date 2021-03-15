@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>room</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js" integrity="sha512-/gO16YMp20RIqCZXZyvMlzALQqEoiDU0akshw25wFiXCRGl+0p/HPWkOd8HWFn6bnatGhxakGLfYhWaPPVQIyA==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="lamp" src="lamp.png" />
+            <img id="bed" src="bed.png" />
+            <img id="dresser" src="dresser.png" />
+            <img id="door" src="door.png" />
+            <img id="table" src="table.png" />
+            <img id="light" src="light.png" />
+        </a-assets>
+        <a-sky color="#f0f"></a-sky>
+        <a-image src="#lamp" position="0 0 -3" width="1" height="3" transparent="true"></a-image>
+        <a-image src="#bed" position="-2 -0.5 -2" width="3" height="2" transparent="true"></a-image>
+        <a-image src="#dresser" position="2 -0.5 -2" width="3" height="2" transparent="true"></a-image>
+        <a-image src="#door" position="4 0 1" width="3.6" height="3" transparent="true" rotation="0 270 0" material="side: double;"></a-image>
+        <a-image src="#table" position="7 -0.5 1" width="4" height="3" transparent="true" rotation="0 90 0"></a-image>VV
+        <a-image src="#light" position="7 3 1" width="1" height="1.3" transparent="true" rotation="0 90 0"></a-image>
+        <a-box color="#0f0" position="0 -2 0" width="15.9999" height="15.9999" rotation="-90 0 0" depth="12" material="side: double;"></a-box>
+        <a-box color="#000" position="0 -2 0" width="16" height="16" rotation="-90 0 0" depth="12"></a-box>
+        <a-image src="#door" position="0 0 8.001" width="3.6" height="3" transparent="true" rotation="0 0 0"></a-image>
+        <a-camera position="0 0 20" wasd-controls="acceleration: 4"></a-camera>
+    </a-scene>
+</body>
+</html>
