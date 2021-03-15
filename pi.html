@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pi</title>
+</head>
+<body>
+    <h1>&pi;</h1>
+    <h1 class="a">&theta;</h1>
+    <h1 class="b">&Delta;</h1>
+    <h1 class="c">&alpha;</h1>
+    <h1 class="d">&times;</h1>
+<style>
+@keyframes spin {
+    0% {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    50% {
+        transform: rotate(180deg) translate(50%, -50%);
+    }
+}
+.a {
+    left: 40%;
+}
+
+.b {
+    left: 60%;
+}
+
+.c {
+    left: 30%;
+}
+
+.d {
+    left: 70%;
+}
+body {
+    overflow: hidden;
+}
+h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0 25%;
+    border: 1px solid black;
+    border-left: 0;
+    border-right: 0;
+    transform-origin: 0 0;
+    text-shadow: 
+        -10rem 0 0 black,
+        -20rem 0 0 black,
+        -30rem 0 0 black,
+        -40rem 0 0 black,
+        10rem 0 0 black,
+        20rem 0 0 black,
+        30rem 0 0 black,
+        40rem 0 black,
+        0 -10rem 0 black,
+        0 -20rem 0 black,
+        0 -30rem 0 black,
+        0 -40rem 0 black,
+        0 10rem 0 black,
+        0 20rem 0 black,
+        0 30rem 0 black,
+        0 40rem 0 black;
+        color: white;
+        animation: spin 1s forwards infinite steps(2);
+}
+</style>
+</body>
+</html>
