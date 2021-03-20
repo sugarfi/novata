@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iron man</title>
+</head>
+<body>
+    <div id="a" class="blob">a</div>
+    <div id="b" class="blob">b</div>
+    <div id="c" class="blob">c</div>
+    <pre></pre>
+    <script src="mark1.js"></script>
+</body>
+<style>
+.blob {
+    border-radius: 50%;
+    padding: 15px;
+    border: 1px solid black;
+    position: absolute;
+}
+
+.act {
+    background-color: yellow;
+}
+
+#a {
+    top: 0;
+    left: calc(50% + 60px);
+}
+
+#b {
+    top: 120px;
+    left: 50%;
+}
+
+#c {
+    top: 120px;
+    left: calc(50% + 120px);
+}
+
+
+pre {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 120px;
+    max-width: 120px;
+    word-break: break-all;
+    display: inline-block;
+}
+</style>
+
+</html>
