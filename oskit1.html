@@ -1,0 +1,1036 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1 Introduction</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html)"> 
+<!-- html,2 --> 
+<meta name="src" content="oskit-www.tex"> 
+<meta name="date" content="2002-04-08 17:19:00"> 
+<link rel="stylesheet" type="text/css" href="oskit-www.css"> 
+</head><body 
+>
+   <div class="crosslinks"><p class="noindent">[<a 
+href="oskit-wwwch2.html" >next</a>] [<a 
+href="#tailoskit-wwwch1.html">tail</a>] [<a 
+href="oskit-wwwpa1.html#oskit-wwwch1.html" >up</a>] </p></div>
+   <h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;1</span><br><a 
+  name="x4-30001"></a>Introduction</h2>
+<!--l. 16--><p class="noindent"><span 
+class="cmti-10">Caveat: This document is really two different documents in one. Much of the expository text (rationale, extended</span>
+<span 
+class="cmti-10">descriptions) belongs in an overview, background, or introductory document. The more concise &#8220;man pages&#8221; belong</span>
+<span 
+class="cmti-10">in an API reference manual. And, of course, a tutorial is needed. Lacking a tutorial, we suspect the best</span>
+<span 
+class="cmti-10">thing for new users to do is to scan this introductory chapter and then look over and play with some</span>
+<span 
+class="cmti-10">of the small example programs, outlined below in section</span><span 
+class="cmti-10">&nbsp;</span><a 
+href="#x4-130001.6.1"><span 
+class="cmti-10">1.6.1</span><!--tex4ht:ref: example-kernels--></a><span 
+class="cmti-10">. Feedback appreciated, and bear with</span>
+<span 
+class="cmti-10">us.</span>
+   <h3 class="sectionHead"><span class="titlemark">1.1</span> <a 
+  name="x4-40001.1"></a>Goals and Scope</h3>
+<!--l. 21--><p class="noindent">The OSKit is a framework and set of modularized components and library code, together with extensive
+documentation, for the construction of operating system kernels, servers, and other OS-level functionality. Its
+purpose is to provide, as a set of easily reusable modules, much of the infrastructure &#8220;grunge&#8221; that usually takes up
+a large percentage of development time in any operating system or OS-related project, and allow developers to
+concentrate their efforts on the unique and interesting aspects of the new OS in question. The goal is for someone to
+be able to take the OSKit and immediately have a base on which they can start concentrating on &#8220;real&#8221; OS issues
+such as scheduling, VM, IPC, file systems, security, or whatever. Alternately they can concentrate on the
+real language issues raised by using advanced languages inside operating systems, such as Java, Lisp,
+Scheme, or ML--instead of spending six months first writing boot loader code, startup code, device
+drivers, kernel printf and malloc code, a kernel debugger, etc. With the recent addition of extensive
+multithreading and sophisticated scheduling support, the OSKit also provides a modular platform for embedded
+applications.
+<!--l. 44--><p class="indent">   Although it can provide a complete OS environment for many domains, the primary intention of
+this toolkit is not to &#8220;write the OS for you&#8221;; we certainly want to leave the OS writing to the OS
+writer. The dividing line between the &#8220;OS&#8221; and the &#8220;OS toolkit,&#8221; as we see it, is basically the line
+between what OS writers <span 
+class="cmti-10">want </span>to write and what they would otherwise <span 
+class="cmti-10">have </span>to write but don&#8217;t really
+want to. Naturally this will vary between different OS groups and developers. If you really want to
+write your own x86 protected-mode startup code, or have found a clever way to do it &#8220;better,&#8221; you&#8217;re
+perfectly free to do so and simply not use the corresponding code in our toolkit. However, our goal
+is that the toolkit be modular enough that you can still easily use <span 
+class="cmti-10">other </span>parts of it to fill in other
+functional areas you don&#8217;t want to have to deal with yourself (or areas that you just don&#8217;t have time to do
+&#8220;yet&#8221;).
+<!--l. 60--><p class="indent">   As such, the toolkit is designed to be usable either as a whole or in arbitrary subsets, as requirements dictate. It
+can be used either as a set of support libraries to be linked into an operating system kernel and/or its support
+programs, or it can be used merely as a collection of &#8220;spare parts&#8221;: example source code to be ripped apart and
+cannibalized for whatever purpose. (Naturally, we prefer that the toolkit be used in library fashion,
+                                                                                         
+                                                                                         
+since this keeps a cleaner interface between the toolkit and the OS and makes them both easier to
+maintain; however, we recognize that in some situations this will not be practical for technical or political
+reasons.)
+<!--l. 72--><p class="indent">   The toolkit is also intended to be useful for things that aren&#8217;t kernels but are OS-related, such as boot loaders or
+OS-level servers running on top of a microkernel.
+   <h3 class="sectionHead"><span class="titlemark">1.2</span> <a 
+  name="x4-50001.2"></a>Road Map</h3>
+<!--l. 78--><p class="noindent">The facilities provided by the OSKit are currently organized into three main categories, corresponding to the three
+main sections of this manual: <span 
+class="cmti-10">interfaces</span>, <span 
+class="cmti-10">function libraries</span>, and <span 
+class="cmti-10">component libraries</span>. Note that the distinction
+between the two types of libraries has lessened since the majority of this document was written, and in some cases is
+rather arbitrary. There is also a small <span 
+class="cmti-10">Utilities </span>section (<a 
+href="oskit-wwwpa5.html#x62-3330000V">V<!--tex4ht:ref: utils--></a>) describing useful OSKit programs; this currently
+describes only the &#8220;NetBoot&#8221; utility.
+   <h4 class="subsectionHead"><span class="titlemark">1.2.1</span> <a 
+  name="x4-60001.2.1"></a>Interfaces</h4>
+<!--l. 91--><p class="noindent">The OSKit&#8217;s interfaces are a set of clean, object-oriented interfaces specified in the framework of the Component
+Object Model (COM), described in Chapter&nbsp;<a 
+href="oskit-wwwch4.html#x9-480004">4<!--tex4ht:ref: com--></a>. These interfaces are made available through thoroughly commented
+public C header files, with corresponding documentation in Part&nbsp;<a 
+href="oskit-wwwpa2.html#x6-28000II">II<!--tex4ht:ref: intf--></a> of this manual. For example, the
+OSKit&nbsp;provides a &#8220;block I/O&#8221; interface for communication between file systems and disk device drivers, a &#8220;network
+I/O&#8221; interface for communication between network device drivers and protocol stacks, and a file system
+interface similar to the &#8220;VFS&#8221; interface in BSD. These interfaces are used and shared by the various
+OSKit&nbsp;components in order to provide consistency and allow them to be used together easily. The OS
+developer may additionally use or build on these interfaces in defining the fundamental structure of the
+client OS, but is not required to do so; alternatively, the developer may simply use them when writing
+the &#8220;glue&#8221; code necessary to incorporate a particular OSKit&nbsp;component into a new or existing OS
+environment.
+   <h4 class="subsectionHead"><span class="titlemark">1.2.2</span> <a 
+  name="x4-70001.2.2"></a>Function Libraries</h4>
+<!--l. 116--><p class="noindent">The OSKit&#8217;s function libraries provide basic low-level services in a traditional C-language function-oriented style.
+For example, the OSKit&nbsp;provides libraries exporting kernel bootstrap support, standard C library functions, and
+executable program loading. These libraries are designed to be usable and controllable in a very fine-grained
+manner, generally on a function-by-function basis, allowing the client OS to easily use particular library functions
+while leaving out or individually overriding other functions. The dependencies between library functions are
+minimized, as are dependencies of library functions on other libraries; where these dependencies inevitably
+exist, they are well-defined and explicitly exposed to the OS developer. In general, the implementation
+details of these libraries are intentionally exposed rather than hidden. The function libraries make
+only minimal use of the OSKit&#8217;s object-oriented COM interfaces, instead generally defining their own
+function-oriented interfaces in ordinary C header files. This design strategy provides maximum power
+and flexibility to the OS developer at the cost of increasing the dependence of the client OS on the
+implementation details of the libraries; we have found this to be a good design tradeoff for the low-level
+OSKit&nbsp;facilities which usually must be customized extensively in order to fit into any particular OS
+environment.
+<!--l. 149--><p class="indent">   Following is a summary of the function libraries currently provided by the OSKit along with the chapter
+numbers in which each is described:
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_c</span>: A simple, minimal C library which minimizes dependencies with the environment and
+     between modules, to provide common C library services in a restricted OS environment. For example,
+     this library provides many standard string, memory, and other utility functions, as well as a formatted
+     I/O facility (e.g., <span 
+class="cmtt-10">printf</span>) designed for easy use in restricted environments such as kernels. In situations
+     where a more complete, <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>-like, C library is desired, the FreeBSD C library (in Chapter&nbsp;<a 
+href="oskit-wwwch21.html#x34-198100021">21<!--tex4ht:ref: freebsd-libc--></a>) may
+     be used instead of the minimal C library.
+     </li>
+                                                                                         
+                                                                                         
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_kern</span>: Kernel support code for setting up a basic OS kernel environment, including providing
+     default handlers for traps and interrupts and such. This library includes many general utilities useful in
+     kernel code, such as functions to access special processor registers, set up and manipulate page tables,
+     and switch between processor modes (e.g., between real and protected mode on the x86). Also includes
+     facilities for convenient source-level remote debugging of OS kernels under development.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_smp</span>: More kernel support code, this library deals with setting up a multiprocessor system
+     to the point where it can be used by the operating system. Also (to be) included are message-passing
+     routines and synchronization primitives, which are necessary to flush remote TLBs.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_com</span>:  Utility  functions  for  handling  COM  interfaces,  and  a  suite  of  generic  wrapper
+     components.  These  wrappers  map  one  OSKit  COM  interface  to  another,  or  implement  simple
+     functionality such as synchronization by creating proxy COM objects that wrap the COM objects
+     provided by more primitive components.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_dev</span>: This library provides default implementations of the &#8220;glue&#8221; functions required by device
+     drivers and other &#8220;large&#8221; encapsulated components (networking, filesystems) imported from other
+     operating systems, running in the OSKit Device Driver (n&eacute;e &#8220;fdev&#8221;) framework. (The framework&#8217;s
+     current name reveals its heritage; today, a more accurate name would be the &#8220;OS Environment&#8221;
+     framework.) The default implementations of these functions are designed for simple kernels using
+     <span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_kern</span>; for more elaborate kernel (or user-mode) environments, the client OS will have to
+     override some or all of the functions in this library.
+     </li></ul>
+<!--l. 216--><p class="indent">   The following four libraries are provided mainly for convenience; they are not as general or as well
+documented as the other libraries but are still useful. See the source directories and READMEs for
+details.
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_startup</span>: Contains functions to start up and initialize various OSKit components, making
+     it easier to write OSKit programs.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_unsupp</span>: Contains various unsupported hacks and utilities.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_unix</span>:  Provides  the  necessary  support  to  debug  and  run  certain  OSKit  components  on
+     FreeBSD and Linux in user-mode.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_fudp</span>: Provides a &#8220;Fake UDP&#8221; implementation: a restricted send-only no-fragmenting version
+     of UDP. This can be useful with the hpfq library (in Chapter&nbsp;<a 
+href="oskit-wwwch41.html#x57-314100041">41<!--tex4ht:ref: hpfq--></a>).</li></ul>
+   <h4 class="subsectionHead"><span class="titlemark">1.2.3</span> <a 
+  name="x4-80001.2.3"></a>Component Libraries</h4>
+<!--l. 241--><p class="noindent">Finally, the OSKit&#8217;s component libraries provide generally higher-level functionality in a more standard,
+coarse-grained, object-oriented &#8220;black box&#8221; design philosophy. Although the OSKit&#8217;s &#8220;components&#8221; are also
+packaged into ordinary link libraries by default, their structure represents more of a component-oriented design than
+a traditional C function-oriented design. In contrast with the OSKit&#8217;s function libraries, the component
+libraries typically export relatively few public entrypoints in comparison to the amount of functionality
+provided. For example, in the Linux and BSD device driver component libraries (see Chapters&nbsp;<a 
+href="oskit-wwwch43.html#x59-323100043">43<!--tex4ht:ref: linux-dev--></a> and&nbsp;<a 
+href="oskit-wwwch44.html#x60-327300044">44<!--tex4ht:ref: freebsd-dev--></a>),
+each entire device driver is represented by a single function entrypoint which is used to initialize and
+register the driver as a whole. The client OS generally interacts with these components through the
+OSKit&#8217;s object-oriented COM interfaces, allowing many components and instances of components
+                                                                                         
+                                                                                         
+to coexist and interact as defined by the OS developer. This design strategy has proven to be most
+appropriate when incorporating large chunks of existing code from existing systems such as BSD and Linux,
+where it is more important to hide the details of the original environment than to provide the most
+flexibility.
+<!--l. 269--><p class="indent">   Following is a summary of the component libraries currently provided by the OSKit along with the chapter
+numbers in which each is described:
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmbx-10">POSIX emulation and libraries</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_posix</span>: Adds support for what a <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>conformant system would typically implement
+         as system calls. For example, <span 
+class="cmtt-10">open</span>, <span 
+class="cmtt-10">read</span>, and <span 
+class="cmtt-10">write</span>. These <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>operations are mapped to the
+         corresponding OSKit COM interfaces. Both the minimal C library and the FreeBSD C library
+         rely on the <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>library to provide the necessary system level operations.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_freebsd</span><span 
+class="cmtt-10">_c</span>:  Complete  <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>-like  C  library  derived  from  FreeBSD,  providing  both
+         single- and multithreaded configurations. This library is an alternative to the minimal C library
+         <span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_c </span>(above), intended for programs that use substantial <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>-like functionality or need
+         thread-safety. The FreeBSD &#8220;system call&#8221; layer is supplied by the <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>library <span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_posix</span>,
+         while the higher-level code is mostly unchanged from that found in FreeBSD.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_freebsd</span><span 
+class="cmtt-10">_m</span>:  Complete  standard  math  library  (taken  from  FreeBSD&#8217;s  <span 
+class="cmtt-10">libm</span>).  The
+         functions in this library will commonly be needed by programs that use floating point.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_fsnamespace</span>: The <span 
+class="cmti-10">Filesystem Namespace </span>library provides &#8220;namei&#8221; style translation for
+         the application, as well as high level mount and unmount capabilities. Multi component absolute
+         and relative pathnames (names with &#8220;slashes&#8221;) are converted to <span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_file </span>and <span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_dir </span>COM
+         objects.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_rtld</span>: The <span 
+class="cmti-10">Runtime Linker/Loader </span>library allows ELF compiled OSKit kernels to load
+         shared libraries (.so files).</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Memory management</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_lmm</span>: A flexible memory management library that can be used to manage either physical
+         or virtual memory. This library supports many special features needed by OS-level code, such as
+         multiple memory types, allocation priorities, and arbitrary alignment and placement constraints
+         for allocated blocks.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_amm</span>: The <span 
+class="cmti-10">Address Map Manager </span>library manages collections of resources where each
+         element of a collection has a name (address) and some set of attributes. Examples of resources
+         that might be managed by address maps include swap space and process virtual address space.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_svm</span>: The <span 
+class="cmti-10">Simple Virtual Memory  </span>library uses the AMM library to define a simple
+         virtual-memory interface for a single address space that can provide memory protection and paging
+         to a block device such as a disk partition. (<span 
+class="cmtt-10">unsupported/redzone.c </span>provides a stack redzone for
+         single-threaded kernels, without all of SVM.)
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_netbsd</span><span 
+class="cmtt-10">_uvm</span>: The <span 
+class="cmti-10">NetBSD UVM  </span>library is ported from NetBSD&#8217;s virtual memory
+         system and provides real virtual memory including eparating kernel and user spaces, paging,
+         memory mapped file, memory protection, and so on.</li></ul>
+                                                                                         
+                                                                                         
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Threads, synchronization, and scheduling</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_threads</span>:  This  library  provides  support  for  multithreaded  kernels,  including  <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>
+         threads, synchronization, scheduling, and stack guards. Scheduling policies are the standard <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>
+         Round-Robin and FIFO. Experimental support for CPU inheritance scheduling, a hierarchical
+         framework for arbitrary scheduling policies, is also provided, although not integrated or robust.
+         Provided policies include rate-monotonic, stride (WFQ), and lottery scheduling.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Process</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_sproc</span>:
+         <!--l. 362--><p class="noindent">The <span 
+class="cmti-10">Simple Process </span>library uses the NetBSD UVM library to provide support for implementing
+         simple  <span 
+class="cmti-10">process</span>,  including  running  a  thread  in  user  mode,  system  calls  and  loading  an  ELF
+         executable file.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Development aids</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_memdebug</span>: This library provides debugging versions of <span 
+class="cmtt-10">malloc </span>et al that check for a
+         variety of bugs related to memory-allocation (overruns, use of freed blocks, etc).
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_gprof</span>: Run-time support code for an OSKit kernel to collect profiling data about itself
+         and report it at the end of a run. Profiling data can be collected for kernel code compiled with
+         the &#8220;-pg&#8221; option (as for use with Unix <span 
+class="cmtt-10">gprof</span>), and profiled &#8220;_p&#8221; versions of all OSKit libraries
+         are provided to profile OSKit code used by the application kernel.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Simple disk/file reading and loading</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_diskpart</span>: A generic library that recognizes various common disk partitioning schemes
+         and produces a complete &#8220;map&#8221; of the organization of any disk. This library provides a simple way
+         for the OS to find relevant or &#8220;interesting&#8221; disk partitions, as well as to easily provide high-level
+         access to arbitrary disk partitions through various naming schemes; BSD- and Linux-compatible
+         naming mechanisms are provided as defaults.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_fsread</span>:  A  simple  read-only  file  system  interpretation  library  supporting  various
+         common types of file systems including BSD FFS, Linux ext2fs, and MINIX file systems. This
+         library is typically used in conjunction with the partition library to provide a convenient way for
+         the OS to read programs and data off of hard disks or floppies. Again, this functionality is often
+         needed at boot time even in operating systems that otherwise would not require it. This code is
+         also extremely useful in constructing boot loaders.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_exec</span>: A generic executable interpreter and loader that supports popular executable
+         formats such as <span 
+class="cmtt-10">a.out </span>and ELF, either during bootstrap or during general operation. (Even
+         microkernel systems, which normally don&#8217;t load executables, generally must have a way to load
+         the first user-level program; the OSKit&#8217;s small, simple executable interpreter is ideally suited to
+         this purpose.)</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Filesystem implementations</span>
+                                                                                         
+                                                                                         
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_linux</span><span 
+class="cmtt-10">_fs</span>: Encapsulated Linux 2.2.12 filesystem code. Includes the Linux VFS layer
+         supporting  ext2fs,  the  primary  Linux  filesystem,  as  well  as  numerous  other  PC  filesystems
+         supported under Linux.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_netbsd</span><span 
+class="cmtt-10">_fs</span>: Encapsulated NetBSD 1.2 filesystem code. Includes the BSD VFS layer
+         supporting the local FFS filesystem.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_memfs</span>: An implementation of a trivial memory-based filesystem, exporting the standard
+         OSKit filesystem interfaces.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Networking implementations</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_freebsd</span><span 
+class="cmtt-10">_net</span>: Encapsulated FreeBSD 2.1.7.1 networking code. Includes socket layer
+         and protocol support wrapped to use the OSKit&#8217;s framework.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_bootp</span>: This library provides a simple interface for performing the BOOTP protocol
+         (RFC 1048/1533) on Ethernet devices to retrieve a canonical set of parameters from a server,
+         based on the client&#8217;s Ethernet hardware address.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_hpfq</span>: This library provides hierarchical proportional-share control of outgoing network
+         link bandwidth, described in the Bennet/Zhang SIGCOMM&#8217;96 paper.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_dpf</span>:  This  library  provides  a  packet  dispatching  mechanism  using  packet  filter
+         technology. Currently the only supported filter is DPF, but the framework is designed to be
+         extensible.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Device driver implementations</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_linux</span><span 
+class="cmtt-10">_dev</span>: Encapsulated Linux 2.2.12 device driver set. Currently includes over 50
+         block (SCSI, IDE) and network drivers wrapped to use the OSKit&#8217;s device driver framework. See
+         the source file <span 
+class="cmtt-10">linux/dev/README </span>for a list of devices and their status.
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_freebsd</span><span 
+class="cmtt-10">_dev</span>: Encapsulated FreeBSD 2.1.7.1 device driver set. Currently includes eight
+         TTY (virtual console and serial line, including mouse) drivers wrapped to use the OSKit&#8217;s device
+         driver framework.</li></ul>
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Video implementation</span>
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_*video*</span>:  Basic  video  support,  with  two  implementations:  one  encapsulating  all  of
+         SVGALIB 1.3.0, and one based on XFree86 3.3.1, but with only the S3 driver currently supported.
+         We also provide support for X11 clients.</li></ul>
+     </li></ul>
+   <h3 class="sectionHead"><span class="titlemark">1.3</span> <a 
+  name="x4-90001.3"></a>Overall Design Principles</h3>
+                                                                                         
+                                                                                         
+<!--l. 501--><p class="noindent">This section describes some of the general principles and policies we followed in designing the components of the
+OSKit. This section is most relevant for people developing or modifying the toolkit itself; however, this
+information may also help users of the toolkit to understand it better and to be able to use it more
+effectively.
+     <ul class="itemize1">
+     <li class="itemize">Cleanly separate and clearly flag architecture- and platform-specific facilities. Although the OSKit
+     currently  only  runs  on  the  x86  architecture,  we  plan  to  port  it  to  other  architectures  such  as
+     the StrongARM in the future. (We will also help with ports by others, e.g., to the DEC Alpha.)
+     Architecture-specific and platform-specific features and interfaces are tagged in this document with
+     boxed icons, e.g., (X86)&nbsp;indicating the Intel x86 processor architecture, and (X86 PC)&nbsp;representing
+     x86-based PC platforms.
+     </li>
+     <li class="itemize">Attempt to make the OSKit&#8217;s <span 
+class="cmti-10">interfaces </span>portable even in situations where their <span 
+class="cmti-10">implementation </span>can&#8217;t
+     be.  Although  by  its  nature  a  large  percentage  of  the  implementation  of  the  OSKit  is  inherently
+     machine-dependent, the interfaces to many of its facilities are very generic and should be usable on most
+     any architecture or platform. For example, the OSKit&#8217;s device driver interfaces are almost completely
+     portable, even though the device drivers themselves generally aren&#8217;t.
+     </li>
+     <li class="itemize">Document  inter-module  dependencies  within  each  library.  For  function  libraries,  this  means
+     documenting  the  dependencies  between  individual  functions;  for  component  libraries,  this  means
+     documenting the dependencies between the different components collected in each library. This policy
+     contrasts to most other third-party libraries, which are usually documented &#8220;black box&#8221; fashion: you
+     are given descriptions of the &#8220;public&#8221; interfaces, and that&#8217;s it. Although with such libraries you could in
+     principle use part of the library independently from the rest or override individual library components
+     with your own implementations, there is no documentation describing <span 
+class="cmti-10">how  </span>to do so. Even if such
+     documentation existed, these libraries often aren&#8217;t well enough modularized internally, so replacing one
+     library component would require understanding and dealing with a complicated web of relationships
+     with other components.
+     <!--l. 552--><p class="noindent">The downside of this policy is that exposing the internal composition of the libraries this way leaves less
+     room for the implementation to change later without affecting the client-visible interfaces. However,
+     we felt that for the purposes of the OSKit, allowing the client more flexibility in using the library is
+     more important than hiding implementation details.
+     </li>
+     <li class="itemize">Where there is already a standard meaning associated with a symbol, use it. For example, our toolkit
+     assumes that <span 
+class="cmtt-10">putchar() </span>means the same thing as it does under normal <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>, and is used the same
+     way, even if it works very differently in a kernel environment. Similarly, the toolkit&#8217;s startup code starts
+     the kernel by calling the standard <span 
+class="cmtt-10">main() </span>function with the standard <span 
+class="cmtt-10">argc </span>and <span 
+class="cmtt-10">argv </span>parameters, even
+     if the kernel was booted straight off the hardware.
+     </li>
+     <li class="itemize">It is generally safe to call initialization routines more than once with no harmful side-effects, except
+     when the documentation says otherwise. Although this is often unnecessary in particular situations, it
+     increases the overall robustness of the components and decreases hair-pulling since clients can always
+     follow the simple rule, &#8220;if in doubt, initialize it.&#8221;</li></ul>
+   <h3 class="sectionHead"><span class="titlemark">1.4</span> <a 
+  name="x4-100001.4"></a>Configuring the OSKit</h3>
+<!--l. 583--><p class="noindent">The OSKit follows the GNU conventions for configuration, building, and installation; see the <span 
+class="cmtt-10">INSTALL </span>file in the
+top-level source directory for general instructions on using GNU <span 
+class="cmtt-10">configure </span>scripts. In short, you need to run the
+<span 
+class="cmtt-10">configure </span>script that is in the top-level source directory of the OSKit; this script will attempt to guess your system
+type and locate various required tools such as the C compiler. You can configure the OSKit to build itself in its own
+                                                                                         
+                                                                                         
+source directory, simply by moving to that directory and typing <span 
+class="cmtt-10">./configure</span>, or you can build the OSKit into a
+separate object directory by changing to that directory and running the <span 
+class="cmtt-10">configure </span>script from there. For example,
+using a separate object directory allows you to put the object files on a local disk if the sources come across
+NFS, or on a partition that isn&#8217;t backed up. Additionally, you can have multiple configurations of the
+OSKit&nbsp;at once (with different options or whatever), each in its own object tree but sharing the same
+sources.
+<!--l. 604--><p class="indent">   To cross-compile the OSKit for another architecture, you will need to specify the host machine type (the
+machine that the OSKit will run on) and the build machine type (the machine on which you are building the
+toolkit), using the <span 
+class="cmtt-10">--build=</span><span 
+class="cmitt-10">machine </span>and <span 
+class="cmtt-10">--host=</span><span 
+class="cmitt-10">machine </span>options. Since the OSKit is a standalone package and
+does not use any include files or libraries other than its own, the operating system component of the host machine
+type is not directly relevant to the configuration of the OSKit. However, the host machine designator as a whole is
+used by the <span 
+class="cmtt-10">configure </span>script as a name prefix to find appropriate cross-compilation tools. For example, if you
+specify &#8216;<span 
+class="cmtt-10">--host=i486-linux</span>&#8217;, the <span 
+class="cmtt-10">configure </span>script will search for build tools called <span 
+class="cmtt-10">i486-linux-gcc</span>,
+<span 
+class="cmtt-10">i486-linux-ar</span>, <span 
+class="cmtt-10">i486-linux-ld</span>, etc. Among other things, which tools are selected determines the object format of
+the created images (e.g., ix86-linux-* tools create ELF format, while ix86-mach-* tools create <span 
+class="cmtt-10">a.out</span>
+format).
+<!--l. 624--><p class="indent">   The OSKit&#8217;s <span 
+class="cmtt-10">configure </span>script accepts various standard options; for a full listing of the supported options, run
+<span 
+class="cmtt-10">configure --help</span>. In addition, the <span 
+class="cmtt-10">configure </span>script also supports the following options specific to the
+OSKit:
+     <dl class="list1"><dt class="list">
+<a 
+  name="dx4-10001"></a><span 
+class="cmtt-10">--enable-debug</span>:  </dt><dd 
+class="list">Turn on debugging support in the compiler, and include debugging and sanity checking
+     code within the OSKit. This option increases code size and reduces performance slightly, but also
+     increases the likelihood of errors being detected quickly.
+     </dd><dt class="list">
+<a 
+  name="dx4-10002"></a><span 
+class="cmtt-10">--enable-profiling</span>:  </dt><dd 
+class="list">Generates profiling versions of all of the OSKit libraries; in keeping with the standard
+     convention, the profiling versions of the libraries are suffixed with <span 
+class="cmtt-10">_p</span>.
+     </dd><dt class="list">
+<a 
+  name="dx4-10003"></a><span 
+class="cmtt-10">--disable-asserts</span>:  </dt><dd 
+class="list">Compiles out assert() calls, for those who live on the edge.
+     </dd><dt class="list">
+<a 
+  name="dx4-10004"></a><span 
+class="cmtt-10">--enable-doc</span>:  </dt><dd 
+class="list">The build process will attempt to format the OSKit documentation. In addition to taking
+     a long time (the complete documentation is approximately 575 pages), it requires <span class="LATEX">L<span class="A">A</span><span class="TEX">T<span 
+class="E">E</span>X</span></span> and <span 
+class="cmtt-10">dvips</span>.
+     Pre-formatted &#8216;.ps&#8217; and &#8216;.html&#8217; files are provided in the source tree.
+     </dd><dt class="list">
+<a 
+  name="dx4-10005"></a><span 
+class="cmtt-10">--enable-linux-bogomips=VALUE</span>:  </dt><dd 
+class="list">This option is only relevant to the Linux device driver and filesystem
+     libraries. Prevents the Linux &#8220;BogoMips&#8221; calibration and instead hardcodes it to the value given. If
+     the <span 
+class="cmtt-10">=VALUE </span>is omitted, the default value of 300 is taken. <span 
+class="cmti-10">Warning: specifying this option may cause the</span>
+     <span 
+class="cmti-10">Linux device drivers and filesystems to behave incorrectly. Use at your own risk.</span>
+     </dd><dt class="list">
+<a 
+  name="dx4-10006"></a><span 
+class="cmtt-10">--enable-modulefile=FILE</span>:  </dt><dd 
+class="list">Use the specified FILE as a list of modules to compile and build. By default
+     the &#8216;modules&#8217; file in the top-level directory is used.</dd></dl>
+<!--l. 661--><p class="noindent">Before you do the actual OSKit build, there are some steps you can choose to take to make the build go faster, by
+not compiling parts you do not need.
+     <ul class="itemize1">
+     <li class="itemize">Edit <span 
+class="cmtt-10">&lt;oskit/dev/linux</span><span 
+class="cmtt-10">_ethernet.h&gt; </span>to contain only lines for drivers you will need. In addition to
+     making your builds go faster, with some hardware this may even be neccessary since some of the
+     probing by incompatible drivers can hang your machine.
+     </li>
+     <li class="itemize">Edit <span 
+class="cmtt-10">&lt;oskit/dev/linux</span><span 
+class="cmtt-10">_scsi.h&gt; </span>to contain only lines for drivers you will need.
+     </li>
+     <li class="itemize">Edit <span 
+class="cmtt-10">&lt;oskit/fs/linux</span><span 
+class="cmtt-10">_filesystems.h&gt; </span>to contain only lines for filesystems you will need.
+                                                                                         
+                                                                                         
+     </li>
+     <li class="itemize">Edit the <span 
+class="cmtt-10">modules </span>file to contain only those components that you are going to use. Or, copy this file
+     and use the <span 
+class="cmtt-10">--enable-modulefile=FILE </span>option to <span 
+class="cmtt-10">configure</span>. This step should only be done after
+     you are somewhat experienced with the OSKit and know what directories you need.
+     </li>
+     <li class="itemize">Set  your  <span 
+class="cmtt-10">CFLAGS </span>environment  variable  to  <span 
+class="cmtt-10">-O1 -pipe</span>.  This  will  speed  up  compiles  by  doing  less
+     optimization than the default <span 
+class="cmtt-10">-O2</span>, and may also make the compiler go faster if your compiler doesn&#8217;t
+     write its temporary files into a memory-based filesystem.</li></ul>
+   <h3 class="sectionHead"><span class="titlemark">1.5</span> <a 
+  name="x4-110001.5"></a>Building the OSKit</h3>
+<!--l. 694--><p class="noindent">Building the OSKit currently <span 
+class="cmti-10">requires </span>these tools and versions:
+     <ul class="itemize1">
+     <li class="itemize">GNU <span 
+class="cmtt-10">make</span>
+     </li>
+     <li class="itemize">GNU CC (<span 
+class="cmtt-10">gcc</span>) version 2.7.x or version 2.95.2. More recent <span 
+class="cmtt-10">gcc </span>versions and <span 
+class="cmtt-10">egcs </span>may work but have
+     not been well tested.
+     </li>
+     <li class="itemize">GNU <span 
+class="cmtt-10">binutils </span>version 2.8.x, or 2.9.1 with BFD 2.9.1.</li></ul>
+<!--l. 705--><p class="noindent">To build the OSKit, go to the top-level source directory (or the top-level object directory, if you configured the
+toolkit to build in a separate object directory), and run GNU <span 
+class="cmtt-10">make </span>(e.g., just &#8216;<span 
+class="cmtt-10">make</span>&#8217; on Linux systems, or &#8216;<span 
+class="cmtt-10">gmake</span>&#8217; on
+BSD systems). Note that the OSKit <span 
+class="cmti-10">requires </span>GNU <span 
+class="cmtt-10">make</span>. Don&#8217;t even think about trying to get it to work with
+another version of <span 
+class="cmtt-10">make</span>. You&#8217;ll be better off porting GNU <span 
+class="cmtt-10">make </span>to your system. Really. To avoid confusion, the
+OSKit&#8217;s makefiles are named <span 
+class="cmtt-10">GNUmakefile </span>rather than just <span 
+class="cmtt-10">Makefile</span>; this way, if you accidentally run the wrong
+<span 
+class="cmtt-10">make </span>utility, it will simply complain that it can&#8217;t find any makefile, instead of producing an obscure
+error.
+<!--l. 722--><p class="indent">   To build or rebuild only one specific part of the OSKit, such as one of the libraries, you can simply go into the
+appropriate subdirectory of the object tree and run GNU <span 
+class="cmtt-10">make </span>from there. The top-level <span 
+class="cmtt-10">GNUmakefile </span>essentially
+does nothing except recursively run <span 
+class="cmtt-10">make </span>in each subdirectory, so it is always safe to run any OSKit makefile
+manually. A few OSKit directories depend on others being built first--for example, the example kernels cannot be
+built until the OSKit libraries they use have been generated--but most of the OSKit libraries can be built
+completely independently of each other.
+<!--l. 735--><p class="indent">   Once the toolkit is built, you can install it with &#8216;<span 
+class="cmtt-10">make install</span>&#8217;. By default, the libraries will go into
+<span 
+class="cmtt-10">/usr/local/lib </span>and the header files into <span 
+class="cmtt-10">/usr/local/include</span>, unless you specified a <span 
+class="cmtt-10">--prefix </span>on the
+<span 
+class="cmtt-10">configure </span>command line. All of the OSKit header files are installed in an <span 
+class="cmtt-10">oskit/ </span>subdirectory (e.g.
+<span 
+class="cmtt-10">/usr/local/include/oskit</span>), so they should not conflict with any header files already present. Although the
+libraries are installed in the main library directory (e.g., <span 
+class="cmtt-10">/usr/local/lib</span>) and not a subdirectory, all the library
+names are prefixed with <span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_ </span>to avoid conflicts with other unrelated libraries you may want to place there. For
+example, the OSKit&#8217;s minimal C library is named <span 
+class="cmtt-10">liboskit</span><span 
+class="cmtt-10">_c.a </span>rather than just <span 
+class="cmtt-10">libc.a</span>, allowing you to install a
+&#8220;real&#8221; C library in the same directory if desired.
+<!--l. 750--><p class="indent">   The standard <span 
+class="cmtt-10">make </span>variables such as <span 
+class="cmtt-10">CFLAGS </span>and <span 
+class="cmtt-10">LDFLAGS </span>are used by the OSKit&#8217;s build rules but
+are not actually defined by any of the OSKit&nbsp;makefiles; thus they are available for use on the <span 
+class="cmtt-10">make</span>
+command line. For example, you can type &#8216;<span 
+class="cmtt-10">make CFLAGS=&#34;-save-temps&#34;</span>&#8217; to cause GCC to leave its
+intermediate files in the object directory, such as the preprocessed C source and the assembly language
+compiler output. (Internally, the OSKit&nbsp;makefiles use OSKIT_ prefixes on most standard makefile
+variables.)
+<!--l. 761--><p class="indent">   The OSKIT makefiles also support a variable <span 
+class="cmtt-10">OSKIT</span><span 
+class="cmtt-10">_QUIET</span><span 
+class="cmtt-10">_MAKE</span>. If this is set to &#8220;yes&#8221;, as in &#8216;<span 
+class="cmtt-10">make</span>
+<span 
+class="cmtt-10">OSKIT</span><span 
+class="cmtt-10">_QUIET</span><span 
+class="cmtt-10">_MAKE=yes</span>&#8217;, then the makefile will spit out less verbiage than by default--it will tell you what is going
+on without telling you how.
+                                                                                         
+                                                                                         
+   <h3 class="sectionHead"><span class="titlemark">1.6</span> <a 
+  name="x4-120001.6"></a>Using the OSKit</h3>
+<!--l. 769--><p class="noindent">To use the OSKit, simply link your kernel (or servers, or whatever) with the appropriate libraries. Detailed
+information on how to use each library is provided in the appropriate chapters in this document. For initial
+experimentation with the OSKit, you can simply hack on the example kernels or create new kernels in the same
+directory (see Section&nbsp;<a 
+href="#x4-130001.6.1">1.6.1<!--tex4ht:ref: example-kernels--></a> for a tour through our examples); however, once your own system grows beyond the
+stage of a simple demo kernel you will probably want to set up a separate source tree and link in the
+OSKit&nbsp;components from the installation directory.
+<!--l. 782--><p class="indent">   Linking libraries into a kernel may seem strange at first, since all of the existing OS kernels that we have
+encountered seem to have a strong &#8220;anti-library&#8221; do-everything-yourself attitude. However, the linker can link
+libraries into a kernel just as easily as it can link them into application programs; we believe that the primary reason
+existing kernels avoid libraries is because the available libraries aren&#8217;t <span 
+class="cmti-10">designed </span>to be used in kernels; they
+make too many assumptions about the environment they run in. Filling that gap is the purpose of the
+OSKit.
+<!--l. 792--><p class="indent">   All of the OSKit libraries are designed so that individual components of each library can be replaced easily; we
+have taken pains to document the dependencies clearly so that clients can override whatever components they need
+to, without causing unexpected results. In fact, in many cases, particularly in the function libraries, it is <span 
+class="cmti-10">necessary</span>
+to override certain functions or symbols in order to make effective use of the toolkit. To override a library function
+or any other symbol defined by a library, just define your own version of it in your kernel or other
+client program; the linker will ensure that your definition is used instead of the library&#8217;s. We strongly
+suggest that you use the linker to replace components of the OSKit, instead of making changes directly
+in the OSKit&nbsp;source (except, of course, to fix bugs in the OSKit). Maintaining a clean separation
+between the OSKit and your kernel will make things much easier when upgrading to a new version of the
+OSKit.
+   <h4 class="subsectionHead"><span class="titlemark">1.6.1</span> <a 
+  name="x4-130001.6.1"></a>Example Kernels</h4>
+<!--l. 818--><p class="noindent">If you are starting a new OS kernel, or just want to experiment with the OSKit in a &#8220;standalone&#8221; fashion, an easy
+way to begin is with one of the example &#8220;kernels&#8221; in the <span 
+class="cmtt-10">examples </span>directory. These examples build up from the
+kernel equivalent of a &#8220;Hello World&#8221; application, demonstrating how to use various facilities separately or together,
+such as the base environment initialization code in <span 
+class="cmtt-10">kern</span>, the minimal console driver code, the minimal C library, the
+remote debugging stub, and device, filesystem and network COM interfaces. The code implementing these examples
+is almost as small and simple as equivalent ordinary user-level applications would be because they fully rely on the
+OSKit to provide the underlying infrastructure necessary to get started. The compilation and linking rules in the
+<span 
+class="cmtt-10">GNUmakerules </span>files for these example programs demonstrate how to link kernels for various startup
+environments.
+<!--l. 837--><p class="indent">   The following example &#8220;kernels,&#8221; and many more, are provided. See the <span 
+class="cmtt-10">examples/README </span>file for a list of most
+of them, and their source for more detail.
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10">hello</span>: What else? Absolutely useless, but you must have one!
+     </li>
+     <li class="itemize">(X86 PC)&nbsp;<span 
+class="cmtt-10">multiboot</span>: Prints out info passed by the boot loader and info about the CPU.
+     </li>
+     <li class="itemize">(X86 PC)&nbsp;<span 
+class="cmtt-10">anno</span><span 
+class="cmtt-10">_test</span>: Simple example of the use of trap and interrupt annotations. See section&nbsp;<a 
+href="oskit-wwwch15.html#x24-178900015.19">15.19<!--tex4ht:ref: kern-anno--></a>
+     for details on annotations.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">timer</span><span 
+class="cmtt-10">_com</span>: Shows a way to use timer interrupts.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">blkio</span>: Demonstrates use of basic low-level disk access.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">linux</span><span 
+class="cmtt-10">_fs</span><span 
+class="cmtt-10">_com</span>: Shows how to use the low-level filesystem interfaces to the Linux filesystems.
+                                                                                         
+                                                                                         
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">bmodfs</span>: Shows use of the BMOD filesystem and the <span 
+class="cmcsc-10"><small 
+class="small-caps">P</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>layer over the OSKit FS interfaces. See
+     section&nbsp;<a 
+href="oskit-wwwch15.html#x24-181600015.20">15.20<!--tex4ht:ref: bmod-fs--></a> for details on the BMOD filesystem.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">pingreply</span>: Shows how to use the low-level network access.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">socket</span><span 
+class="cmtt-10">_bsd</span>: Demonstrates use of the BSD socket layer over the low-level network interfaces.
+     </li>
+     <li class="itemize">(X86 PC)&nbsp;<span 
+class="cmtt-10">smp</span>: A simple MultiBoot kernel that demonstrates how to use the SMP support.</li></ul>
+   <h4 class="subsectionHead"><span class="titlemark">1.6.2</span> <a 
+  name="x4-140001.6.2"></a>Booting Kernels</h4>
+<!--l. 885--><p class="noindent">The example kernels, as well as custom kernels you build using the OSKit, can be booted from either the <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">R</small><small 
+class="small-caps">U</small><small 
+class="small-caps">B</small></span>,
+Linux, Mach, or BSD boot loaders, from MS-DOS directly, or from the NetBoot &#8220;meta-kernel.&#8221; (NetBoot is
+described in Section&nbsp;<a 
+href="oskit-wwwch46.html#x63-333100046">46<!--tex4ht:ref: netboot--></a>.) <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">R</small><small 
+class="small-caps">U</small><small 
+class="small-caps">B</small> </span>and NetBoot can boot the kernels as-is, since they directly support the MultiBoot
+standard, whereas the other boot loaders need the kernel to be in a different format. This conversion can be done
+with the <span 
+class="cmtt-10">mkbsdimage</span>, <span 
+class="cmtt-10">mklinuximage</span>, and <span 
+class="cmtt-10">mkdosimage </span>&#8220;boot adapter&#8221; scripts, which are automatically built and
+installed with the OSKit when configured for the appropriate host. See comments in each script for the argument
+syntax.
+     <ul class="itemize1">
+     <li class="itemize">The <span 
+class="cmtt-10">mklinuximage </span>script is installed with the OSKit when configured for a Linux or other ELF-based
+     host; given a MultiBoot boot image, it creates a standard Linux boot image that can be loaded from
+     LILO or other Linux boot loaders.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">mkbsdimage </span>script is installed when the OSKit is configured for a Mach or BSD host; its script
+     creates an NMAGIC <span 
+class="cmtt-10">a.out </span>image from a MultiBoot image that can be loaded from any of the BSD or
+     Mach boot loaders. Note that <span 
+class="cmtt-10">mkbsdimage </span>requires GNU <span 
+class="cmtt-10">ld </span>to work properly: on BSD systems, which
+     don&#8217;t normally use GNU <span 
+class="cmtt-10">ld</span>, you will have to build and install GNU <span 
+class="cmtt-10">ld </span>manually.
+     </li>
+     <li class="itemize">The  <span 
+class="cmtt-10">mkdosimage  </span>script  is  installed  when  the  OSKit  is  configured  for  DOS-based  targets  such  as
+     <span 
+class="cmtt-10">i386-msdos </span>and <span 
+class="cmtt-10">i386-moss</span>. Like the <span 
+class="cmtt-10">mkbsdimage </span>script, <span 
+class="cmtt-10">mkdosimage </span>requires GNU <span 
+class="cmtt-10">ld</span>; you may have
+     to build and install GNU <span 
+class="cmtt-10">ld </span>first, configured as a cross-inker for an MS-DOS target, before <span 
+class="cmtt-10">mkdosimage</span>
+     will build properly.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">mkmbimage </span>is installed with all OSKit configurations And, unlike the other scripts, doesn&#8217;t do
+     any conversion. It simply allows for the combining of a kernel and additional files into one MultiBoot
+     image. The resulting image can be used with MultiBoot boot loaders such as <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">R</small><small 
+class="small-caps">U</small><small 
+class="small-caps">B</small> </span>and NetBoot. If
+     you have perl installed on your system, an alternate to this program is supplied, <span 
+class="cmtt-10">mkmb2 </span>which runs
+     more quickly. Its semantics are identical to mkmbimage.</li></ul>
+<!--l. 932--><p class="noindent">For example, the following command creates a bootable BSD-style image named &#8216;<span 
+class="cmtt-10">Image</span>&#8217;:
+     <div class="quote">
+     <!--l. 935--><p class="noindent">% <span 
+class="cmtt-10">mkbsdimage </span><span 
+class="cmsl-10">hello</span></div>
+<!--l. 937--><p class="noindent">the <span 
+class="cmtt-10">mk</span><span 
+class="cmsl-10">type</span><span 
+class="cmtt-10">image </span>scripts can also do more complex things, such as combining an arbitrary number of additional files or
+&#8220;boot modules&#8221; into the image. See&nbsp;<a 
+href="oskit-wwwch15.html#x24-167700015.14">15.14<!--tex4ht:ref: kern-x86pc-multiboot--></a> and the scripts for more info.
+<!--l. 942--><p class="indent">   For details on the MultiBoot standard see Section&nbsp;<a 
+href="oskit-wwwch15.html#x24-170900015.14.12">15.14.12<!--tex4ht:ref: multiboot-spec--></a>.
+   <h4 class="subsectionHead"><span class="titlemark">1.6.3</span> <a 
+  name="x4-150001.6.3"></a>Command line arguments</h4>
+                                                                                         
+                                                                                         
+<!--l. 947--><p class="noindent">The various boot adapters convert their respective command-line formats, such as the <span 
+class="cmtt-10">boothowto </span>word in the BSD
+boot loader, into the string format used by MultiBoot-compliant operating systems. The OSKit&nbsp;expects this string
+to be in a certain format, which looks like:
+     <div class="quote">
+     <!--l. 954--><p class="noindent">progname <span 
+class="cmtt-10">[&lt;</span>boot-opts and env-vars<span 
+class="cmtt-10">&gt; --] &lt;</span>args to main<span 
+class="cmtt-10">&gt;</span></div>
+<!--l. 956--><p class="noindent">Note that if no <span 
+class="cmtt-10">-- </span>is present then all of the args will be passed to <span 
+class="cmtt-10">main</span>.
+<!--l. 959--><p class="indent">   The default OSKit MultiBoot startup code then converts this string into a C-style <span 
+class="cmtt-10">argv</span>/<span 
+class="cmtt-10">argc </span>pair, an
+<span 
+class="cmtt-10">environ </span>global array, and a set of booting-options in the <span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_bootargv</span>/<span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_bootargc </span>global
+variables.
+<!--l. 965--><p class="indent">   The <span 
+class="cmtt-10">argv</span>/<span 
+class="cmtt-10">argc </span>pair and the <span 
+class="cmtt-10">environ </span>array are passed to main, the latter as the third parameter commonly
+called <span 
+class="cmtt-10">envp</span>. The booting-options in <span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_bootargv</span>/<span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_bootargc </span>are interpreted by the default OSKit&nbsp;console
+startup code and the following flags have special meaning:
+     <dl class="description"><dt class="description">
+<span 
+class="cmtt-10">-h</span> </dt><dd 
+class="description">Use the serial line for the console. See also the <span 
+class="cmtt-10">-f </span>flag. The serial port to use is determined by the
+     <span 
+class="cmtt-10">cons</span><span 
+class="cmtt-10">_com</span><span 
+class="cmtt-10">_port </span>variable in <span 
+class="cmtt-10">libkern</span>&#8217;s <span 
+class="cmtt-10">base</span><span 
+class="cmtt-10">_console.c</span>;
+     </dd><dt class="description">
+<span 
+class="cmtt-10">-d</span> </dt><dd 
+class="description">Enable debugging via GDB over a serial line; The serial port to use is determined by the <span 
+class="cmtt-10">gdb</span><span 
+class="cmtt-10">_com</span><span 
+class="cmtt-10">_port</span>
+     variable in <span 
+class="cmtt-10">libkern</span>&#8217;s <span 
+class="cmtt-10">base</span><span 
+class="cmtt-10">_console.c</span>. This port may differ from the serial console port, in fact it is
+     advantageous to do so.
+     </dd><dt class="description">
+<span 
+class="cmtt-10">-p</span> </dt><dd 
+class="description">Enable profiling. The OS must have been compiled accordingly. See Section&nbsp;<a 
+href="oskit-wwwch32.html#x46-289300032">32<!--tex4ht:ref: gprof--></a> for more details on
+     profiling;
+     </dd><dt class="description">
+<span 
+class="cmtt-10">-k</span> </dt><dd 
+class="description">Enable &#8220;killswitch&#8221; support. This allows one to kill the running kernel by sending characters to the
+     second serial line;
+     </dd><dt class="description">
+<span 
+class="cmtt-10">-f</span> </dt><dd 
+class="description">When using a serial console, run it at 115200 baud instead of the default 9600. This is a Utah extension
+     and is not in BSD.</dd></dl>
+<!--l. 1002--><p class="noindent">These flags are decidedly BSD-centric, but that is because at Utah we most commonly boot OSKit kernels from the
+FreeBSD boot-loader.
+<!--l. 1005--><p class="indent">   In addition, if the NetBoot booting program is being used, then an additional parameter will be present in
+<span 
+class="cmtt-10">oskit</span><span 
+class="cmtt-10">_bootargv</span>:
+     <dl class="description"><dt class="description">
+<span 
+class="cmtt-10">-retaddr </span><span 
+class="cmbxsl-10">address</span> </dt><dd 
+class="description">This specifies a location in physical memory where the OS can jump to and return
+     control to NetBoot. The default <span 
+class="cmtt-10">_exit </span>routine in <span 
+class="cmtt-10">libkern</span>&#8217;s <span 
+class="cmtt-10">base</span><span 
+class="cmtt-10">_console.c </span>uses this value when
+     exiting.</dd></dl>
+                                                                                         
+                                                                                         
+   <div class="crosslinks"><p class="noindent">[<a 
+href="oskit-wwwch2.html" >next</a>] [<a 
+href="oskit-wwwch1.html" >front</a>] [<a 
+href="oskit-wwwpa1.html#oskit-wwwch1.html" >up</a>] </p></div><a 
+  name="tailoskit-wwwch1.html"></a>    
+</body></html> 
