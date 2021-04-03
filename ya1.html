@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF viewer</title>
+    <style>
+article {
+    width: 30%;
+    height: 100vh;
+    padding: 0 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    position: relative;
+    counter-increment:page;
+}
+
+article::after {
+    content: counter(page);
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+}
+
+body, html{padding:0;margin:0;
+display:flex;flex-direction:column;align-items:center;counter-reset:page;}
+    </style>
+</head>
+<body>
+    <article>
+        <h1>my spirit animal is a yacht</h1>
+        <h2>the story of me and yachts</h2>
+        <h4>a yachtobiography by geoff pinkoff</h4>
+    </article>
+    <article>
+        <h3>chapter 1: yachts</h3>
+        <p>
+            my father bought me my first yacht when i was three.
+            it was my third birthday, in fact, and i was opening
+            my presents when i saw it.
+            it was a yachtmaster 2000 mk 1, and it had just come out
+            the previous year. he unveiled it to me at our private
+            dock. i walked out and examined it. taking the remote
+            control that it had come with (i wasn't old enough to pilot
+            it yet, and it was advanced enough to have a remote control
+            - those of you with yachts will understand), i drove the yacht
+            to the middle of our private bay. then i took the grenade launcher
+            my father had bought me (i know what you're thinking: why on
+            earth was a three year old child only receiving two presents on
+            their birthday? i felt the same way; my father didn't really
+            appreciate me, i suppose.) and i detonated that piece of garbage.
+            'FATHER!' i shouted. 'THIS IS A 2000 MK 1! THIS CAME OUT 
+            L A S T Y E A R!' my father tried to calm me down. the nerve!
+            my rights were being infringed upon there. using my grenade launcher
+            (thanks for not buying me a <i>real</i> weapon, father - two presents,
+            my foot) i walked him to the car, where we drove to a boat show
+            and i bought myself (with my father's money; i could have payed myself,
+            but i wasn't the one who messed up here!) a yachtmaster 2001 mk 2.
+            oh, the fun i had. childhood.
+        </p>
+    </article>
+    <article>
+        <h3>chapter 2: queen</h3>
+        <p>
+            i got a lot of enjoyment out of my first yacht, but there comes a point in
+            every child's life where they must move on. for me, that point was when
+            i realized my 2001 mk 2 wasn't good enough. my father had learned his lesson
+            about not buying me enough birthday gifts, luckily, so i had a new weapon
+            on hand to force him to the car with. we went to a boat shoat. i knew i had to
+            up my boat game here, so why just stop at one boat? i bought everything in the lot.
+            yachts upon yachts upon yachts. i did have to detonate a good half of them,
+            but that was ok - my father's attitude had improved somewhat since my
+            third birthday and we were able to go to another boat show to make up for the losses.
+            this was around the time i got into stocks. i invested, of course, in
+            yachtmaster - i hoped to eventually buy enough shares to have control of
+            the company, and get some nice yachts for myself. my father, being a
+            top executive there, wasn't so keen on this idea, but a little persuasion
+            goes a long way. (you've got to get some.)
+        </p>
+    </article>
+</body>
+</html>
