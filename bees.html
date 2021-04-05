@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>you gotta get some</title>
+    <script src="libgif.js"></script>
+</head>
+<body>
+    <img src="b1.png" class="bg bg1"/>
+    <img src="b2.png" class="bg bg2"/>
+    <img src="b1.png" class="bgg bg1"/>
+    <img src="b2.png" class="bgg bg2"/>
+    <img src="bee.png" class="b1"/>
+    <img src="bee.png" class="b2"/>
+    <img src="bee.png" class="frank" rel:animated_src="frank.gif" />
+    <img src="frank.gif" class="frank2" />
+    <script src="bees.js"></script>
+</body>
+<style>
+
+@keyframes f {
+    0% { opacity : 1;}
+    50%{opacity: 0;}
+    100% { opacity : 1;}
+}
+
+@keyframes ff {
+    0% { opacity : 0;}
+    50%{opacity: 1;}
+    100% { opacity : 0;}
+}
+
+@keyframes b {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {transform:rotate(360deg);}
+}
+
+
+@keyframes bb {
+    0% {
+        top: 50px;
+        left: 0px;
+    }
+    50% {
+        top: 520px;
+        left: 770px;
+    }
+    100% {
+        top: 50px;
+      
+        left: 0px;
+    }
+}
+
+@keyframes bbb {
+    0% {
+        top: 0px;
+        left: 50px;
+    }
+    50% {
+        top: 570px;
+        left: 720px;
+    }
+    100% {
+        top: 0px;
+      
+        left: 50px;
+    }
+}
+
+.b1, .b2 {
+    width: 30px;
+    height: 30px;
+    animation: ;
+}
+
+.b1 {
+    position: absolute;
+    top: 50px;
+    left: 90px;
+    animation: bb 15s linear infinite forwards, b 5s infinite linear forwards;
+}
+
+.b2 {
+    position: absolute;
+    top: 90px;
+    left: 50px;
+    animation: bbb 15s linear infinite forwards,b 5s infinite linear forwards;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 600px;
+}
+
+    .bgg {
+        position: absolute;
+        top: 600px;
+        left: 800px;
+        width:200px;
+        height: 100px;
+    }
+
+    .bg1 {
+        animation: f linear 10s forwards infinite;
+    }
+    .bg2 {
+        animation: ff linear 10s forwards infinite;
+    }
+
+    .frank,canvas {
+        position: absolute;
+        left: 800px
+            ;top: 0;
+        height: 600px;
+        width: 200px;
+    }
+    .frank2 {
+        position: absolute;
+        left: 0px;
+        top: 600px;
+        width: 800px;
+        height: 100px;
+    }
+
+    body,html{overflow:hidden;}
+</style>
+</html>
