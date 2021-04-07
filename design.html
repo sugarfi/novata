@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>design</title>
+        <link rel="stylesheet" href="https://use.typekit.net/enk0vfl.css">
+        <link rel="stylesheet" href="design.css"/>
+    </head>
+    <body id="body" style="font-family: acumin-pro, sans-serif;height: 100%; color: #555;padding: 10px;">
+        <section style="text-align: right">design to the <span id="mind" class="underlined" style="color: black;"><em>mind</em></span></section>
+        
+        <section style="text-align: center;position: absolute; bottom: 20px;">is like a <span id="hdl">hdl</span> to an <span id="fpga">fpga</span></section>
+        <div style="display: table; margin-left: auto; margin-right: auto; height: 90vh;">
+            <div style="display: table-cell; vertical-align: middle;">
+                <span id="word" style="color: rgba(255, 255, 255, 0.8);"></span>
+            </div>
+        </div>
+        <audio hidden id="audioPlayer" src=""></audio>
+    </body>
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        var mind = document.getElementById("mind");
+        var body = document.getElementById("body");
+        var word = document.getElementById("word");
+        var hdl = document.getElementById("hdl");
+        var fpga = document.getElementById("fpga");
+        
+        var audioPlayer = document.getElementById("audioPlayer");
+
+        mind.onclick = async function() {
+            var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+            for(var i = 0; i < colors.length; i++) {
+                body.classList.add(`bg-${colors[i]}`);
+                audioPlayer.play();
+                await sleep(500);
+                body.classList.remove(`bg-${colors[i]}`);
+            }
+            body.classList.add("lights-out");
+            mind.classList.remove("underlined");
+            hdl.classList.add("underlined", "italic");
+        }
+
+        hdl.onclick = async function() {
+            var words = ["λόγος", "думать", "veritas"];
+            for(var i = 0; i < words.length; i++) {
+                word.innerHTML = words[i];
+                await sleep(500);
+            }
+            hdl.classList.remove("underlined")
+            fpga.classList.add("underlined", "italic");
+        }
+
+        fpga.onclick = async function() {
+            body.classList.remove("lights-out");
+            mind.classList.add("underlined");
+            [hdl, fpga].forEach(elem => elem.classList.remove("underlined", "italic"));
+            word.innerHTML = "";
+        }
+    </script>
+</html>

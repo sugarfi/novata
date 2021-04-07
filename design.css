@@ -1,0 +1,44 @@
+#mind, #hdl, #fpga {
+    cursor: pointer;
+}
+
+.bg-red {
+    background: #FF0018;
+}
+
+.bg-orange {
+    background: #FFA52C
+}
+
+.bg-yellow {
+    background:  #FFFF41;
+}
+
+.bg-green {
+    background: #008018;
+}
+
+.bg-blue {
+    background: #0000F9;
+}
+
+.bg-purple {
+    background: #86007D;
+}
+
+.lights-out {
+    background: black;
+    color: white !important;
+}
+
+.lights-out > section > #mind {
+    color: whitesmoke !important;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
