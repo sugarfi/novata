@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a shadow</title>
+</head>
+<body>
+    <img src="frank.gif" id="f"/>
+    <img src="frank2.gif" id="f2"/>
+</body>
+<style>
+@keyframes ff {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity :0;
+    }
+}
+@keyframes fff {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity :1;
+    }
+}
+
+#f {
+    animation: ff 3ms steps(3, start) forwards infinite;
+}
+#f2 {
+    animation: fff 3ms steps(3, start) forwards infinite;
+}
+
+#f,#f2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#f,#f2 {
+    width: 200px;
+    height: 200px;
+}
+</style>
+</html>
