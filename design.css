@@ -1,5 +1,5 @@
-#mind, #hdl, #fpga {
-    cursor: pointer;
+body {
+    transition: all .25s;
 }
 
 .bg-red {
@@ -37,6 +37,7 @@
 
 .underlined {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .italic {
