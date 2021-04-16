@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>irony</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+</head>
+<body>
+    <div class="window b">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                i dare you to be real
+            </div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <h2>
+                when self-doubt, copying, low-effort, translation, esperantism, homosexuality, obsession, boredom, repetition, youth,
+                and "art?" go too far
+            </h2>
+            <h3>
+                a cautionary tale
+            </h3>
+            <img src="xkcd.png" />
+        </div>
+    </div>
+    <div class="window a">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                check this out!
+            </div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <img src="dialog.box8.gif" />
+        </div>
+    </div>
+</body>
+    <style>
+.window {
+    display:inline-block;}
+.b{
+    position:relative;
+    z-index:-1;
+}
+
+.a {
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    z-index: 5;
+}
+@keyframes blink {
+    0% { visibility:hidden;}
+    100% {visibility:visible;
+    }
+}
+
+    .a {
+        animation: blink 5s steps(2) forwards infinite;
+    }
+    </style>
+</html>
