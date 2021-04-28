@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>closeup</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Satisfy&family=Squada+One&display=swap');
+
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                overflow: hidden;
+                width: 100vw;
+                height: 100vh;
+                display: grid;
+                grid-template: 100% / minmax(200px, 1fr) 2fr 1fr;
+                background-image: url('ab.png');
+                background-position: top left;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+            p {
+                font-family: 'Squada One';
+                text-transform: uppercase;
+                color: lightblue;
+                padding: 10px;
+                text-align: center;
+                background: rgba(34, 34, 34, 0.8);
+            }
+
+            span {
+                color: red;
+                font-family: 'Satisfy';
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+
+            img#d {
+                height: 60%;
+            }
+
+            img#c {
+                height: 20%;
+                padding: 0;
+                margin: 0;
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img id="d"src="detecTIVE.png"/>
+        </div>
+        <div style="justify-content: center">
+            <marquee direction="up">
+            <p>let's go report this <span>incident</span>.</p>
+            <p>i agree let's report this <span>incident</span>.</p>
+            <p>are there any suspects around who might have caused this <span>incident</span>.</p>
+            <p>that man looks <span>suspicous</span>.</p>
+            <p>we should stop him if he is <span>suspicious</span>.</p>
+            <p>you there. we are <span>suspicious</span> you may have caused this <span>incident</span>.</p>
+            <p><span>come with us</span>.</p>
+            </marquee>
+        </div>
+        <div>
+            <a href="station.html">
+                <img src="policek.png"/>
+            </a>
+            <img id="c" src="dedc.png"/>
+        </div>
+    </body>
+</html>

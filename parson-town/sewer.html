@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>let there be like</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
+
+            html, body {
+                padding: 0;
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: black;
+            }
+            ul {
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            li {
+                border-radius: 50%;
+                padding: 20px;
+                vertical-align: middle;
+                text-align: center;
+                position: relative;
+                background-color: white;
+                cursor: none;
+                font-family: 'Henny Penny';
+            }
+
+            li::after {
+                position: absolute;
+                color: transparent;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                content: "us";
+                font-family: 'Dancing Script';
+            }
+
+            li:hover {
+                color: transparent;
+            }
+
+            li:hover::after {
+                color: black;
+            }
+
+            li#f {
+                color: transparent;
+            }
+
+            li#f::after {
+                color: black;
+            }
+
+            a#e, img#d {
+                padding: 30px;
+                border-radius: 0 30% 0 0;
+            }
+
+            img#d {
+                height: 60%;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                transform: rotateY(180deg);
+            }
+
+            a#e {
+                height: 50%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+            }
+
+            a > img {
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+        </ul>
+        <ul>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+        </ul>
+        <ul>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+            <li>
+                them
+            </li>
+        </ul>
+        <a id="e" href="e1.html">
+            <img src="elevator.png"/>
+        </a>
+        <img id="d" src="detecTIVE.png"/>
+    </body>
+</html>

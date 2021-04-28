@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>that hurts</title>
+        <style>
+            html, body {
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0;
+                margin: 0;
+                background: white;
+            }
+
+            @keyframes breath {
+                from {
+                    opacity: 0.8;
+                }
+
+                to {
+                    opacity: 0.4;
+                }
+            }
+            
+            div {
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0;
+                margin: 0;
+                background: red;
+                opacity: 0.5;
+                animation: breath 3s infinite alternate;
+                pointer-events: none;
+            }
+
+            img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 60%;
+            }
+
+            img#a {
+                opacity: 0.5;
+                transform: translateX(-20px) translate(-50%, -50%);
+            }
+
+            img#b {
+                opacity: 0.3;
+                transform: translateX(-40px) translate(-50%, -50%);
+            }
+
+            img#i0 {
+                opacity: 0.1;
+                transform: translateX(-60px) translate(-50%, -50%);
+            }
+
+            img#c {
+                opacity: 0.5;
+                transform: translateX(20px) translate(-50%, -50%);
+            }
+
+            img#d {
+                opacity: 0.3;
+                transform: translateX(40px) translate(-50%, -50%);
+            }
+
+            img#i1 {
+                opacity: 0.1;
+                transform: translateX(60px) translate(-50%, -50%);
+            }
+
+            img {
+                transform:  translate(-50%, -50%);
+                opacity: 0.7;
+            }
+        </style>
+    </head>
+    <body>
+            <img id="a" src="real.png"/>
+            <img id="b" src="real.png"/>
+            <img id="c" src="real.png"/>
+            <img id="d" src="real.png"/>
+            <img id="i1" src="real.png"/>
+            <img id="i0" src="real.png"/>
+            <a href="e.html">
+                <img src="real.png"/>
+            </a>
+        <div></div>
+    </body>
+</html>

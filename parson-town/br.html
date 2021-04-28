@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cute</title>
+        <style>
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            div#t {
+                width: 80%;
+                display: flex;
+            }
+
+            div#t div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            img {
+                height: 50vh;
+            }
+
+            p {
+                color: red;
+                background: rgba(34, 34, 34, 0.8);
+                padding: 10px;
+                animation: spin 20s forwards linear infinite;
+            }
+
+            p#o {
+                color: lightgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="t">
+            <div>
+                <p>i</p>
+                <img src="s.png"/>
+            </div>
+            <div>
+                <p>love</p>
+                <img src="s.png"/>
+            </div>
+            <div>
+                <p>you</p>
+                <img src="s.png"/>
+            </div>
+            <div>
+                <p id="o">so do i</p>
+                <img src="s.png"/>
+            </div>
+            <div>
+                <a href="final.html">
+                    <img src="venture.png">
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
