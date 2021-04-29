@@ -10,5 +10,6 @@ eyy lmao how u doin
 
 # code of conduct
 
-do not modify existing pages, only add content
-index.html may be modified, but only to add links
+- do not modify existing pages, only add content
+- index.html may be modified, but only to add links
+- add links to the end of index.html, nowhere else
