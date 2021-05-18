@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>
+    </p>
+    <h1>
+        <span>d</span>
+        <span>o</span>
+        <span>n</span>
+        <span>t</span>
+    </h1>
+    <p>
+    </p>
+    <h1>
+        <span>l</span>
+        <span>e</span>
+        <span>t</span>
+    </h1>
+    <p>
+    </p>
+    <h1>
+        <span>m</span>
+        <span>e</span>
+    </h1>
+    <p>
+    </p>
+    <h1>
+        <span>g</span>
+        <span>o</span>
+    </h1>
+    <p>
+    </p>
+</body>
+<style>
+body{overflow:hidden;}
+*{user-select:none;}
+h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 48px;
+    float: right;
+    margin: 0 5px;
+}
+
+h1:nth-of-type(even) {
+    float: left;
+    float-offset: 100px;
+}
+
+h1 span, p {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+h1 span {
+
+    cursor: pointer;
+}
+
+h1 span.active, p span.active {
+    color: black;
+}
+            p, h1 {
+                display: inline;
+            }
+            p {
+                color: white;
+            }
+
+
+</style>
+    <script>
+        document.body.onload=()=>{
+            const y = Array.from(document.querySelectorAll('p'));
+            let letters = [];
+        Array.from(document.querySelectorAll('h1 span')).forEach((x,idx) => {
+            x.setAttribute('idx', idx);
+            x.onclick = () => {
+                x.classList.toggle('active');
+                    if (x.className.includes('active')) { 
+                        letters.push([x.textContent, parseInt(x.getAttribute('idx'))]);
+                    } else {
+                        letters = letters.filter(y => ((y[0] != x.textContent) || (y[1] != parseInt(x.getAttribute('idx')))));
+                    }
+                y.forEach(x2 => {
+                    let html = '';
+                    let off = 0;
+                    x2.innerText.split('').forEach(letter => {
+                        if (letters.filter(x => (x[0] == letter) && (x[1] == off)).length) {
+                            html += `<span class="active">${letter}</span>`;
+                        } else {
+                            html += letter;
+                        }
+                        if (letter != ' ') {
+                        off++;
+                        }
+                        off %= 'dontletmego'.length;
+                    });
+                    x2.innerHTML = html;
+                });
+            }
+        });
+                y[0].textContent = 'dont let me go '.repeat(20);
+                y[1].textContent = 'dont let me go '.repeat(50);
+                y[2].textContent = 'dont let me go '.repeat(100);
+                y[y.length - 1].textContent = 'dont let me go '.repeat(200);
+        }
+    </script>
+</html>
